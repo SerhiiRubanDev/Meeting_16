@@ -1,0 +1,17 @@
+$color: #ccc;
+$navColor: cadetblue; 
+body{
+    background-color: $color;
+}
+.circle{
+    $size: 100px;
+    width: $size;
+    height: $size;
+    border: 1px solid navy;
+    border-radius: 0.5*$size;
+    margin: auto {
+       top: 10px;
+       bottom: 20px;
+    };
+
+}

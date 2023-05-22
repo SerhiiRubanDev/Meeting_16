@@ -1,0 +1,84 @@
+@use "sass:color";
+@use "part1";
+@use "sass:math";
+$roundedCorner: false;
+
+.border{
+    border: 1px solid navy;
+    border-radius: if($roundedCorner, 5px, null);
+}
+nav{
+    $color: part1.$navColor;
+    background-color: $color;
+    ul{
+        display: flex;
+        list-style-type: none;
+
+    }
+    li{
+        display: inline-block;
+    }
+    a{
+        text-decoration: none;
+        display: block;
+        padding: 10px 20px;
+        background-color: $color;
+        color: white;
+        transition: {
+            property: color;
+            duration: 2s;
+            timing-function: linear;
+        };
+        &:hover{
+            background-color: darken($color: $color, $amount: 30%);
+            color: orangered;
+        }
+    }
+}
+@mixin theme($theme: darkgray){
+    background-color: $theme;
+    padding: 10px;
+    box-shadow: 5px 5px 8px rgba($color: $theme, $alpha: 0.7);
+}
+.btn{
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    @include theme;
+    margin-top: 10px;
+    &-success{
+        border-color: green;
+        @include theme($theme: lightgreen)
+    }
+    &-warning{
+        border-color: orangered;
+        @include theme(lighten(orangered, 30%));
+    }
+}
+
+%border-extended{
+    $color:  #333;
+    border: 1px solid $color;
+    padding: 10px;
+    box-shadow: 5px 5px 8px rgba($color, 0.7);
+}
+.success{
+    @extend %border-extended;
+    border-color: green;
+}
+.error{
+    @extend %border-extended;
+    border-color: red;
+}
+.container{
+    display: flex;
+    article{
+        width: math.div(600px, 960px) * 100%;
+        background-color: cornflowerblue;
+      }
+      aside{
+        width: math.div(300px, 960px) * 100%;
+        margin-left: auto;
+        background-color: lightpink;
+      }
+}
